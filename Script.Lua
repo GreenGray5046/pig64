@@ -128,6 +128,13 @@ window:AddButton({
     end
 })
 
+window:AddButton({
+    text = "Fly WORKS",
+    callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Zynox-Dev/Zynox-Fly/refs/heads/main/Fly.lua"))()
+    end
+})
+
 -- 🟨 ESP Toggle
 window:AddButton({
     text = "ESP (PLAYERS)",
