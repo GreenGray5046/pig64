@@ -219,14 +219,25 @@ window2:AddToggle({
     callback = function(state)
         _G.autoKill = state
         if state then
-            task.spawn(function()
-                while _G.autoKill do
-                    for _, g in pairs(game:GetService("ReplicatedStorage")
-                        .Source.Puzzles.Networking.__NETWORKINGOBJECTS:GetDescendants()) do
-                        if g.Name == "DamageBoss" then
-                            pcall(function()
-                                g:FireServer()
-                            end)
+          task.spawn(function()
+    while _G.autoKill do
+        local found = false
+        for _, g in pairs(game:GetService("ReplicatedStorage")
+            .Source.Puzzles.Networking.__NETWORKINGOBJECTS:GetDescendants()) do
+            if g.Name == "DamageBoss" then
+                pcall(function()
+                    g:FireServer()
+                end)
+                found = true
+            end
+        end
+        if found then
+            task.wait(0.018) -- Tune this if it's too slow or too fast
+        else
+            task.wait(1)
+        end
+    end
+end)
                         end
                     end
                 end
