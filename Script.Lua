@@ -227,7 +227,6 @@ window2:AddToggle({
                             pcall(function()
                                 g:FireServer()
                             end)
-                            task.wait(0.5)
                         end
                     end
                 end
